@@ -25,17 +25,13 @@ public class ArmMovement : MonoBehaviour
     //中間地点用bool
     private bool arrivePatrs = false;
 
-    //つかまえたパーツ
-    public GameObject attachObject;
-
     //キャッシュ用
     private Transform selfTransform;
     private WaitForSeconds wfs = new WaitForSeconds(0.02f);
     private WaitForSeconds wfs2 = new WaitForSeconds(0.25f);
 
-
-    //デバッグ用選択済みボディ座標（メインシステム２で指定）
-    private Vector3 selectedBody = new Vector3(0, 0, 0);
+    [SerializeField, Header("デバッグ用パーツオブジェクト")]
+    private GameObject obj;
 
 
     private void Start()
@@ -71,7 +67,7 @@ public class ArmMovement : MonoBehaviour
         if(canMove)
         {
             canMove = false;
-            StartCoroutine(Movement(partsPos));
+            StartCoroutine(Movement(obj, new Vector3(0, 0, 0)));
 
         }
     }
@@ -79,18 +75,19 @@ public class ArmMovement : MonoBehaviour
     /// <summary>
     /// アームの挙動
     /// </summary>
-    /// <param name="partsPos"></param>
+    /// <param name="partsObj">選択したパーツオブジェクト</param>
+    /// <param name="selectedBodyPos">選択された体の位置</param>
     /// <returns></returns>
-    IEnumerator Movement(Vector3 partsPos)
+    IEnumerator Movement(GameObject partsObj ,Vector3 selectedBodyPos)
     {
         selfTransform.rotation = Quaternion.identity;
 
         //パーツまで
-        while (selfTransform.position != partsPos)
+        while (selfTransform.position != partsObj.transform.position)
         {
 
-            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsPos, speed);
-            var direction = Quaternion.LookRotation(originPos - partsPos ,Vector3.up);
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsObj.transform.position, speed);
+            var direction = Quaternion.LookRotation(originPos - partsObj.transform.position, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, speed);
 
             yield return wfs;
@@ -103,17 +100,17 @@ public class ArmMovement : MonoBehaviour
 
 
         //選択された体まで
-        while (selfTransform.position != selectedBody)
+        while (selfTransform.position != selectedBodyPos)
         {
 
-            selfTransform.position = Vector3.MoveTowards(selfTransform.position, selectedBody, speed);
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, selectedBodyPos, speed);
 
-            if(attachObject != null)
+            if(partsObj != null)
             {
-                attachObject.transform.position = Vector3.MoveTowards(selfTransform.position, selectedBody, speed);
+                partsObj.transform.position = Vector3.MoveTowards(selfTransform.position, selectedBodyPos, speed);
             }
 
-            var direction = Quaternion.LookRotation(partsPos - selectedBody, Vector3.up);
+            var direction = Quaternion.LookRotation(partsObj.transform.position - selectedBodyPos, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, speed);
             yield return wfs;
         }
@@ -122,18 +119,12 @@ public class ArmMovement : MonoBehaviour
         animator.SetTrigger("GrapTrigger");
         yield return wfs2;
 
-        if(attachObject != null)
-        {
-            Destroy(attachObject);
-        }
-
-
         //パーツまで戻る
-        while (selfTransform.position != partsPos)
+        while (selfTransform.position != partsObj.transform.position)
         {
 
-            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsPos, speed);
-            var direction = Quaternion.LookRotation(partsPos - selfTransform.position, Vector3.up);
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsObj.transform.position, speed);
+            var direction = Quaternion.LookRotation(partsObj.transform.position - selfTransform.position, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, speed);
 
             yield return wfs;
@@ -146,7 +137,7 @@ public class ArmMovement : MonoBehaviour
         {
 
             selfTransform.position = Vector3.MoveTowards(selfTransform.position, originPos, speed);
-            var direction = Quaternion.LookRotation(originPos - partsPos, Vector3.up);
+            var direction = Quaternion.LookRotation(originPos - partsObj.transform.position, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, speed);
 
             yield return wfs;
