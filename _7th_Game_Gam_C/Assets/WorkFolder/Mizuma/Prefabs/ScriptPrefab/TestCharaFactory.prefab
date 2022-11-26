@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3503067851922057109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3503067851922057108}
+  - component: {fileID: 3503067851922057111}
+  - component: {fileID: 5690937352942490354}
+  m_Layer: 0
+  m_Name: TestCharaFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3503067851922057108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503067851922057109}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3503067851922057111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503067851922057109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97098123b7420de4582bc15cce5518ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headBodyPartsPrefabArr:
+  - {fileID: 6798798806456493406, guid: 0d1eebac24cf2ec4b889b36400b630f0, type: 3}
+  - {fileID: 4590095501407168855, guid: 918bc332db944ca4b896aa43631e58fc, type: 3}
+  - {fileID: 2743282930541624156, guid: 5db0166a3055b684e89bac5a984badb7, type: 3}
+  - {fileID: 6043576557800151659, guid: f4737d8dcca2fee45bb88f6fbfb8fec9, type: 3}
+  - {fileID: 1504628535760944870, guid: d015adb650b910c4f81a27785311b2ec, type: 3}
+  - {fileID: 4749845707691663704, guid: 0090e47019954a6479bf0e64c3c0cfb8, type: 3}
+  - {fileID: 4089320702015719004, guid: e46fd97767c40e649b8e4b91514b9574, type: 3}
+  - {fileID: 6139384258747854410, guid: 16b5a2519e1ce2c41bb298de75e68f50, type: 3}
+  - {fileID: 3542546435226485148, guid: 00fef4b7982ffa744b41fff4a1ce1f60, type: 3}
+  - {fileID: 8708067842586043303, guid: dae99d21a2d638344ad7c4aaed7f13d5, type: 3}
+  leftArmPartsPrefabArr:
+  - {fileID: 6000367070937987588, guid: 7929f52c6b643cb49a103f9c94d325e7, type: 3}
+  - {fileID: 2016162637634044669, guid: f8e67e13cdb469049ab4d47e58800b7b, type: 3}
+  - {fileID: 8177816914359148845, guid: 310d30fcfaa171d448c93521c7805762, type: 3}
+  - {fileID: 1994927034818160720, guid: 3bbff7ba01a10714c8a97137d98e7f96, type: 3}
+  - {fileID: 5124695326664742097, guid: 40220862efd077e419cad82569f708fd, type: 3}
+  - {fileID: 8467066800744918497, guid: 02682299bb6e97c45945216702c33737, type: 3}
+  - {fileID: 3533824657279911912, guid: 976ff9cba7ad78141ac0cd1e18c0d891, type: 3}
+  - {fileID: 8418233818843504578, guid: 7e72a4bac4842d14086206731ce2727c, type: 3}
+  - {fileID: 6146906836615501101, guid: 2a1b758e2291dc3499568439a70d2147, type: 3}
+  - {fileID: 1506170063917450713, guid: 3817e4cec5146434c851ff67e0f294f3, type: 3}
+  rightArmPartsPrefabArr:
+  - {fileID: 4821742431761570992, guid: b0584efa6017f1c4c82b3b3ff37e9cc3, type: 3}
+  - {fileID: 7967680079329615333, guid: 5dc14fb5951a7da41ae7f059cf767b43, type: 3}
+  - {fileID: 7906812863755222821, guid: 585471170c785df4788ccee002bade7f, type: 3}
+  - {fileID: 3664344256125265542, guid: 19e024d6676bd424e82a7c8d8b90237d, type: 3}
+  - {fileID: 3076722841711222954, guid: a0e604f1948e2374fa47c626831fb50f, type: 3}
+  - {fileID: 5880979219810156363, guid: 5b3a12fa22d5cb54f80fec3c301fa55b, type: 3}
+  - {fileID: 8762389865516701446, guid: eff249a53f0f3c844b9154533ef9de72, type: 3}
+  - {fileID: 2417737841502709108, guid: 7cabe8b4e8eb1b043ab1483620bcefe8, type: 3}
+  - {fileID: 1490600182376740972, guid: e3e2ef66662cb4b4c9ee29c1266d46e9, type: 3}
+  - {fileID: 563360476186777665, guid: 4dcd180b26be5cf4e8300c7c4a36803a, type: 3}
+  leftLegPartsPrefabArr:
+  - {fileID: 828213065653563909, guid: c4096728bf149324b8bd292a56fcf163, type: 3}
+  - {fileID: 806930956622272640, guid: 4e664b0e7f4681b48a89e02271e5b1c6, type: 3}
+  - {fileID: 6958486438607384066, guid: a9d44d6fdefd60c4ab149197565107e5, type: 3}
+  - {fileID: 3407727781658421194, guid: 73bf5ce3359662b46a4b4b5a7f4e8a8a, type: 3}
+  - {fileID: 1919652258855822902, guid: 0da96e728376e794e9f5b7db46c1847f, type: 3}
+  - {fileID: 8839770406173474655, guid: b88923fd92a000c48a75cd36cc11ff8b, type: 3}
+  - {fileID: 5593919890922021281, guid: c71a1e207b39faa4390eecd537b35ca0, type: 3}
+  - {fileID: 5238460806650402660, guid: e9ffaf7da9e09ed4e9b068afeeb9b0f8, type: 3}
+  - {fileID: 5814639284125903963, guid: ff7c8cf89b1c87c4188a17a147ba457a, type: 3}
+  - {fileID: 4135204435822010268, guid: 58a9e3852d9b38a48b9943141ae55730, type: 3}
+  rightLegPartsPrefabArr:
+  - {fileID: 4181081331553347770, guid: bb0ecf6c7005e8e44be9a34d3fffe3c4, type: 3}
+  - {fileID: 3652340543866852651, guid: 26dc474255fe28b4cb99cbfd8a44aa89, type: 3}
+  - {fileID: 4409159618317500591, guid: f8cfcd7ff0cf638438c1a4a61c32e0ac, type: 3}
+  - {fileID: 2166091921248370214, guid: 6bcab81f24f29c4489f5ce51e1185fdf, type: 3}
+  - {fileID: 7074902987553343752, guid: be0fe50c385e15d4497f8f796507c250, type: 3}
+  - {fileID: 4761394825575059958, guid: 9eceb6a517fbb2048ab226e6c7b463d3, type: 3}
+  - {fileID: 5154247844678793570, guid: 3a9fd85e101e1964d8c152c618a5672e, type: 3}
+  - {fileID: 8764912530574365519, guid: 1a25d0ed4297ef0479fe158a71534c6e, type: 3}
+  - {fileID: 3889558935374523578, guid: 730225a58158aee45b9370353fe8b5a2, type: 3}
+  - {fileID: 1185974085741278116, guid: 862a399c9b84c3448ab10a98928821b9, type: 3}
+--- !u!114 &5690937352942490354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503067851922057109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c2c877b822ce04a861e5922e49a4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
