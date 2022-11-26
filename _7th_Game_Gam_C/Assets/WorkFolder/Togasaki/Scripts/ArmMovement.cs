@@ -45,9 +45,13 @@ public class ArmMovement : MonoBehaviour
             originLinePos.Add(line.GetPosition(i));
         }
 
-        StartCoroutine(ddd());
+        //StartCoroutine(ddd());
     }
 
+    /// <summary>
+    /// デバッグ用
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ddd()
     {
         while(true)
@@ -58,7 +62,7 @@ public class ArmMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// 引数で指定されたパーツオブジェクトの場所にロボットアームをもっていき、その後編集するボディまで持っていく
+    /// 引数で指定されたパーツオブジェクトの場所にロボットアームをもっていき、その後編集するボディまで持っていく関数
     /// </summary>
     /// <param name="partsObj">選択したパーツオブジェクト</param>
     /// <param name="selectedBodyPos">選択された体の位置</param>
