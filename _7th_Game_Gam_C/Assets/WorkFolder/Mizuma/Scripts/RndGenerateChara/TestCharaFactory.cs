@@ -22,6 +22,19 @@ public class TestCharaFactory : MonoBehaviour
     }
 
     /// <summary>
+    /// 初期状態にあるキャラクターを生成する
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GenerateInitCharacter(Chara_Type headBodyPart)
+    {
+        GameObject newCharaParent = new GameObject("Character");
+        CharaDetail charaDetail = newCharaParent.AddComponent<CharaDetail>();
+        MakeNewHeadBody(charaDetail, headBodyPart);
+
+        return newCharaParent;
+    }
+
+    /// <summary>
     /// ランダムな頭/胴, 左腕, 右腕, 左足, 右足が付いたキャラクターを生成する
     /// </summary>
     /// <param name="isAlignCharacter">パーツの種類を揃えて生成するか</param>
@@ -78,12 +91,15 @@ public class TestCharaFactory : MonoBehaviour
     /// </summary>
     /// <param name="parent">パーツを付け替える親元</param>
     /// <param name="charaType">付ける頭パーツの種類 (省略可能)</param>
-    public void MakeNewHeadBody(CharaDetail parent, Chara_Type? charaType = null)
+    /// <returns>生成したパーツ</returns>
+    public GameObject MakeNewHeadBody(CharaDetail parent, Chara_Type? charaType = null)
     {
         Chara_Type _charaType = charaType ?? (Chara_Type)Random.Range(0, partsTypeLen);
         GameObject newPart = Instantiate(headBodyPartsPrefabArr[(int)charaType], parent.transform);
         newPart.transform.localPosition = Vector3.zero;
         parent.ChgHeadBody(newPart, _charaType);
+
+        return newPart;
     }
 
     /// <summary>
@@ -91,12 +107,15 @@ public class TestCharaFactory : MonoBehaviour
     /// </summary>
     /// <param name="parent">パーツを付け替える親元</param>
     /// <param name="charaType">付ける左腕パーツの種類 (省略可能)</param>
-    public void MakeNewLeftArm(CharaDetail parent, Chara_Type? charaType = null)
+    /// <returns>生成したパーツ</returns>
+    public GameObject MakeNewLeftArm(CharaDetail parent, Chara_Type? charaType = null)
     {
         Chara_Type _charaType = charaType ?? (Chara_Type)Random.Range(0, partsTypeLen);
         GameObject newPart = Instantiate(leftArmPartsPrefabArr[(int)charaType], parent.transform);
         newPart.transform.localPosition = Vector3.zero;
         parent.ChgLeftArm(newPart, _charaType);
+
+        return newPart;
     }
 
     /// <summary>
@@ -104,12 +123,15 @@ public class TestCharaFactory : MonoBehaviour
     /// </summary>
     /// <param name="parent">パーツを付け替える親元</param>
     /// <param name="charaType">付ける右腕パーツの種類 (省略可能)</param>
-    public void MakeNewRightArm(CharaDetail parent, Chara_Type? charaType = null)
+    /// <returns>生成したパーツ</returns>
+    public GameObject MakeNewRightArm(CharaDetail parent, Chara_Type? charaType = null)
     {
         Chara_Type _charaType = charaType ?? (Chara_Type)Random.Range(0, partsTypeLen);
         GameObject newPart = Instantiate(rightArmPartsPrefabArr[(int)charaType], parent.transform);
         newPart.transform.localPosition = Vector3.zero;
         parent.ChgRightArm(newPart, _charaType);
+
+        return newPart;
     }
 
     /// <summary>
@@ -117,12 +139,15 @@ public class TestCharaFactory : MonoBehaviour
     /// </summary>
     /// <param name="parent">パーツを付け替える親元</param>
     /// <param name="charaType">付ける左足パーツの種類 (省略可能)</param>
-    public void MakeNewLeftLeg(CharaDetail parent, Chara_Type? charaType = null)
+    /// <returns>生成したパーツ</returns>
+    public GameObject MakeNewLeftLeg(CharaDetail parent, Chara_Type? charaType = null)
     {
         Chara_Type _charaType = charaType ?? (Chara_Type)Random.Range(0, partsTypeLen);
         GameObject newPart = Instantiate(leftLegPartsPrefabArr[(int)charaType], parent.transform);
         newPart.transform.localPosition = Vector3.zero;
         parent.ChgLeftLeg(newPart, _charaType);
+
+        return newPart;
     }
 
     /// <summary>
@@ -130,12 +155,15 @@ public class TestCharaFactory : MonoBehaviour
     /// </summary>
     /// <param name="parent">パーツを付け替える親元</param>
     /// <param name="charaType">付ける右腕パーツの種類 (省略可能)</param>
-    public void MakeNewRightLeg(CharaDetail parent, Chara_Type? charaType = null)
+    /// <returns>生成したパーツ</returns>
+    public GameObject MakeNewRightLeg(CharaDetail parent, Chara_Type? charaType = null)
     {
         Chara_Type _charaType = charaType ?? (Chara_Type)Random.Range(0, partsTypeLen);
         GameObject newPart = Instantiate(rightLegPartsPrefabArr[(int)charaType], parent.transform);
         newPart.transform.localPosition = Vector3.zero;
         parent.ChgRightLeg(newPart, _charaType);
+
+        return newPart;
     }
 
     private bool IsAllPartsSameNumber()
