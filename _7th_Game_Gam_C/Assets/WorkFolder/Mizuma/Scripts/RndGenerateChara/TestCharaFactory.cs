@@ -22,6 +22,19 @@ public class TestCharaFactory : MonoBehaviour
     }
 
     /// <summary>
+    /// 初期状態にあるキャラクターを生成する
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GenerateInitCharacter(Chara_Type headBodyPart)
+    {
+        GameObject newCharaParent = new GameObject("Character");
+        CharaDetail charaDetail = newCharaParent.AddComponent<CharaDetail>();
+        MakeNewHeadBody(charaDetail, headBodyPart);
+
+        return newCharaParent;
+    }
+
+    /// <summary>
     /// ランダムな頭/胴, 左腕, 右腕, 左足, 右足が付いたキャラクターを生成する
     /// </summary>
     /// <param name="isAlignCharacter">パーツの種類を揃えて生成するか</param>
