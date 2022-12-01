@@ -14,7 +14,7 @@ public class main_2 : MonoBehaviour
     {
         //IDを受け取りフォルダから対応のオブジェクト生成
         GameObject Bod = (GameObject)Resources.Load("id");
-        Instantiate(Bod, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+        Instantiate(Bod, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);//生成場所
 
 
         //生成した体の移動

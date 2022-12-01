@@ -19,6 +19,6 @@ public class Body_move : MonoBehaviour
     }
     public void Body_Move()
     {
-        transform.position += new Vector3(0, 0, 1) * Time.deltaTime;
+        transform.position += new Vector3(0, 0, 1) * Time.deltaTime;//ˆÚ“®‹——£
     }
 }
