@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Selection : MonoBehaviour
 {
+    //オブジェクト格納用
     public GameObject ClickedGameObject;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
-    {//選択
+    {//選択する
         if (Input.GetMouseButtonDown(0))
         {
             ClickedGameObject = null;

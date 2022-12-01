@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class main_2 : MonoBehaviour
 {
-    public float Order;
-    public float Time;
-
-
-
-    private float Time_CountDone = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         
     }
 
-    public void TimeCount()
+    public void TimeCount(int id)
     {
-        //次の注文
+        //IDを受け取りフォルダから対応のオブジェクト生成
+        GameObject Bod = (GameObject)Resources.Load("id");
+        Instantiate(Bod, new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
 
+
+        //生成した体の移動
+        Body_move.instance.Body_Move();
     }
 }
+
+//注文したものを流す
+//IDに対応した物を動かす
+//位置調整
