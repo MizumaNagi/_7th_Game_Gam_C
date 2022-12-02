@@ -47,7 +47,7 @@ public class ArmMovement : MonoBehaviour
             originLinePos.Add(line.GetPosition(i));
         }
 
-        ArmToTarget(obj, bObj);
+        //ArmToTarget(obj, bObj);
     }
 
     ///// <summary>
