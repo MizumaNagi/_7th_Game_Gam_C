@@ -5,7 +5,7 @@ using UnityEngine;
 public class ReMain2 : MonoBehaviour
 {
     //[SerializeField]
-    //private 
+    //private
 
     public void Spawn()
     {

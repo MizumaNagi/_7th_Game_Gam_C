@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27896d1efb657de4f818acf53e9f7144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextCount: 0
   Minute: 1
   Second: 10
   Timer: {fileID: 2072476658}
@@ -1271,7 +1272,7 @@ GameObject:
   - component: {fileID: 2072476659}
   - component: {fileID: 2072476658}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: TimeText (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

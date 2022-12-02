@@ -36,6 +36,7 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
     [SerializeField, Header("デバッグ用ボディオブジェクト")]
     private GameObject bObj;
 
+
     private void Start()
     {
         selfTransform = gameObject.transform;
