@@ -33,6 +33,8 @@ public class ArmMovement : MonoBehaviour
     [SerializeField, Header("デバッグ用パーツオブジェクト")]
     private GameObject obj;
 
+    [SerializeField, Header("デバッグ用ボディオブジェクト")]
+    private GameObject bObj;
 
     private void Start()
     {
@@ -45,33 +47,33 @@ public class ArmMovement : MonoBehaviour
             originLinePos.Add(line.GetPosition(i));
         }
 
-        //StartCoroutine(ddd());
+        ArmToTarget(obj, bObj);
     }
 
-    /// <summary>
-    /// デバッグ用
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator ddd()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(Random.Range(1, 3));
-            ArmToTarget(obj,new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));
-        }
-    }
+    ///// <summary>
+    ///// デバッグ用
+    ///// </summary>
+    ///// <returns></returns>
+    //IEnumerator ddd()
+    //{
+    //    while(true)
+    //    {
+    //        yield return new WaitForSeconds(Random.Range(1, 3));
+    //        ArmToTarget(obj, bObj);
+    //    }
+    //}
 
     /// <summary>
     /// 引数で指定されたパーツオブジェクトの場所にロボットアームをもっていき、その後編集するボディまで持っていく関数
     /// </summary>
     /// <param name="partsObj">選択したパーツオブジェクト</param>
     /// <param name="selectedBodyPos">選択された体の位置</param>
-    public void ArmToTarget(GameObject partsObj,Vector3 selectedBodyPos)
+    public void ArmToTarget(GameObject partsObj,GameObject selectedBody)
     {
         if(canMove)
         {
             canMove = false;
-            StartCoroutine(Movement(partsObj, selectedBodyPos));
+            StartCoroutine(Movement(partsObj, selectedBody));
 
         }
     }
@@ -82,7 +84,7 @@ public class ArmMovement : MonoBehaviour
     /// <param name="partsObj">選択したパーツオブジェクト</param>
     /// <param name="selectedBodyPos">選択された体の位置</param>
     /// <returns></returns>
-    IEnumerator Movement(GameObject partsObj ,Vector3 selectedBodyPos)
+    IEnumerator Movement(GameObject partsObj ,GameObject selectedBody)
     {
         selfTransform.rotation = Quaternion.identity;
 
@@ -104,23 +106,23 @@ public class ArmMovement : MonoBehaviour
 
 
         //選択された体まで
-        while (selfTransform.position != selectedBodyPos)
+        while (selfTransform.position != selectedBody.transform.position)
         {
-
-            selfTransform.position = Vector3.MoveTowards(selfTransform.position, selectedBodyPos, speed);
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, selectedBody.transform.position, speed);
 
             if(partsObj != null)
             {
-                partsObj.transform.position = Vector3.MoveTowards(selfTransform.position, selectedBodyPos, speed);
+                partsObj.transform.position = Vector3.MoveTowards(selfTransform.position, selectedBody.transform.position, speed);
             }
 
-            var direction = Quaternion.LookRotation(partsObj.transform.position - selectedBodyPos, Vector3.up);
+            var direction = Quaternion.LookRotation(partsObj.transform.position - selectedBody.transform.position, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, 0.1f);
             yield return wfs;
         }
 
         yield return wfs2;
         animator.SetTrigger("GrapTrigger");
+        partsObj.transform.parent = selectedBody.transform;
         yield return wfs2;
 
         //パーツまで戻る
