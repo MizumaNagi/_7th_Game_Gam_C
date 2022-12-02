@@ -16,28 +16,28 @@ public class ButtonController : MonoBehaviour
     
     public void Onclick(int num)
     {
-        int a = 39;
+        
         // num = 0 ~ 9
         // num”Ô–Ú‚Ì¶˜rƒp[ƒc‚ðì‚é
-        if(a>=0&&a<=9)
+        if(num>=0&&num<=9)
         {
             GameObject parent = new GameObject();
             f.MakeNewLeftArm(parent.GetComponent<CharaDetail>(), (Chara_Type)num);
         }
-        if (a >= 10 && a <= 19)
+        if (num >= 10 && num <= 19)
         {
             GameObject parent = new GameObject();
-            f.MakeNewRightArm(parent.GetComponent<CharaDetail>(), (Chara_Type)num);
+            f.MakeNewRightArm(parent.GetComponent<CharaDetail>(), (Chara_Type)num-10);
         }
-        if (a >= 20 && a <= 29)
+        if (num >= 20 && num <= 29)
         {
             GameObject parent = new GameObject();
-            f.MakeNewLeftLeg(parent.GetComponent<CharaDetail>(), (Chara_Type)num);
+            f.MakeNewLeftLeg(parent.GetComponent<CharaDetail>(), (Chara_Type)num-20);
         }
-        if (a >= 30 && a <= 39)
+        if (num >= 30 && num <= 39)
         {
             GameObject parent = new GameObject();
-            f.MakeNewRightLeg(parent.GetComponent<CharaDetail>(), (Chara_Type)num);
+            f.MakeNewRightLeg(parent.GetComponent<CharaDetail>(), (Chara_Type)num-30);
         }
     }
         // num = 10 ~ 19
