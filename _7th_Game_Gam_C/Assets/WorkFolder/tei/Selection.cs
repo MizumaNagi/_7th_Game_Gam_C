@@ -11,17 +11,18 @@ public class Selection : SingletonMonoBehaviour<Selection>
     {//‘I‘ð‚·‚é
         if (Input.GetMouseButtonDown(0))
         {
-            ClickedGameObject = null;
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
 
             if (Physics.Raycast(ray, out hit))
             {
-                ClickedGameObject = hit.collider.gameObject;
+                if(hit.collider.gameObject.GetComponent<CharaDetail>() != null)
+                {
+                    ClickedGameObject = hit.collider.gameObject;
+                }
             }
 
-            Debug.Log(ClickedGameObject);
+            //Debug.Log(ClickedGameObject);
 
         }
     }

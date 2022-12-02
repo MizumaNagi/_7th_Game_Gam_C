@@ -13,16 +13,18 @@ public class ButtonController : MonoBehaviour
         // num”Ô–Ú‚Ì¶˜rƒp[ƒc‚ðì‚é
         if(num>=0&&num<=9)
         {
-            GameObject parent = new GameObject();
-            GameObject ob = TestCharaFactory.Instance.MakeNewLeftArm(parent.GetComponent<CharaDetail>(), (Chara_Type)num);
+            if(Selection.Instance.ClickedGameObject == null)
+            {
+                Debug.Log("EEE");
+            }
+            GameObject ob = TestCharaFactory.Instance.MakeNewLeftArm(Selection.Instance.ClickedGameObject.GetComponent<CharaDetail>(), (Chara_Type)num);
             ob.gameObject.transform.position = Positions.Instance.leftPartsPos.position;
 
             ArmMovement.Instance.ArmToTarget(ob, Selection.Instance.ClickedGameObject);
         }
         if (num >= 10 && num <= 19)
         {
-            GameObject parent = new GameObject();
-            GameObject ob = TestCharaFactory.Instance.MakeNewRightArm(parent.GetComponent<CharaDetail>(), (Chara_Type)num-10);
+            GameObject ob = TestCharaFactory.Instance.MakeNewRightArm(Selection.Instance.ClickedGameObject.GetComponent<CharaDetail>(), (Chara_Type)num-10);
 
             ob.gameObject.transform.position = Positions.Instance.rightPartsPos.position;
 
@@ -30,8 +32,7 @@ public class ButtonController : MonoBehaviour
         }
         if (num >= 20 && num <= 29)
         {
-            GameObject parent = new GameObject();
-            GameObject ob = TestCharaFactory.Instance.MakeNewLeftLeg(parent.GetComponent<CharaDetail>(), (Chara_Type)num-20);
+            GameObject ob = TestCharaFactory.Instance.MakeNewLeftLeg(Selection.Instance.ClickedGameObject.GetComponent<CharaDetail>(), (Chara_Type)num-20);
 
             ob.gameObject.transform.position = Positions.Instance.leftPartsPos.position;
 
@@ -39,8 +40,7 @@ public class ButtonController : MonoBehaviour
         }
         if (num >= 30 && num <= 39)
         {
-            GameObject parent = new GameObject();
-            GameObject ob = TestCharaFactory.Instance.MakeNewRightLeg(parent.GetComponent<CharaDetail>(), (Chara_Type)num-30);
+            GameObject ob = TestCharaFactory.Instance.MakeNewRightLeg(Selection.Instance.ClickedGameObject.GetComponent<CharaDetail>(), (Chara_Type)num-30);
 
             ob.gameObject.transform.position = Positions.Instance.rightPartsPos.position;
 
