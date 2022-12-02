@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("次のパーツが流れてくるまでの時間")]
+    [SerializeField]
+    float NextCount;
+
     [Header("制限時間(分)")]
     [SerializeField]
     float Minute;
@@ -67,7 +71,7 @@ public class UIManager : MonoBehaviour
                 case 1:
                     Parts_No = Body.Length;
                     Parts_ID = Random.Range(0, Parts_No);
-                    //Instantiate(Body[Parts_ID]);//このタイミングで生成
+                    //Instantiate(Body[Parts_ID]);//このタイミングで生成。メインシステムにIDを送る。
                     break;
 
                 case 2:

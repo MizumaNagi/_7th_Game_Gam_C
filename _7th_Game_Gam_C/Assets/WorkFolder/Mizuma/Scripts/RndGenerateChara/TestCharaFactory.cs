@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// キャラクターを生成する
 /// </summary>
-public class TestCharaFactory : MonoBehaviour
+public class TestCharaFactory : SingletonMonoBehaviour<TestCharaFactory>
 {
     [SerializeField] private GameObject[] headBodyPartsPrefabArr;
     [SerializeField] private GameObject[] leftArmPartsPrefabArr;

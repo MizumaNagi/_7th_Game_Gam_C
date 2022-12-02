@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ReMain2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //[SerializeField]
+    //private 
+
+    public void Spawn()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
 }

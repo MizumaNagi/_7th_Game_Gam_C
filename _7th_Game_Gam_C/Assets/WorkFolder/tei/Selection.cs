@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Selection : MonoBehaviour
+public class Selection : SingletonMonoBehaviour<Selection>
 {
     //オブジェクト格納用
     public GameObject ClickedGameObject;

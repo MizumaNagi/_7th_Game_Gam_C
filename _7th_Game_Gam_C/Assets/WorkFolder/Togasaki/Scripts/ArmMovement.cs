@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmMovement : MonoBehaviour
+public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
 {
     [SerializeField, Header("アームのスピード")]
     private float speed = 1;
