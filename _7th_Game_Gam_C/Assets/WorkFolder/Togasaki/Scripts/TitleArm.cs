@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
+public class TitleArm : MonoBehaviour
 {
     [SerializeField, Header("アームのスピード")]
     private float speed = 1;
@@ -48,31 +48,31 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
             originLinePos.Add(line.GetPosition(i));
         }
 
-        //StartCoroutine(ddd());
+        StartCoroutine(ddd());
 
     }
 
-    ///// <summary>
-    ///// デバッグ用
-    ///// </summary>
-    ///// <returns></returns>
-    //IEnumerator ddd()
-    //{
-    //    while (true)
-    //    {
-    //        yield return new WaitForSeconds(Random.Range(1, 2));
-    //        ArmToTarget(obj, bObj);
-    //    }
-    //}
+    /// <summary>
+    /// デバッグ用
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator ddd()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
+            ArmToTarget(new Vector3(Random.Range(0.0f,3.0f), 0, Random.Range(0.0f, 3.0f)), new Vector3(0, 1, 0));
+        }
+    }
 
     /// <summary>
     /// 引数で指定されたパーツオブジェクトの場所にロボットアームをもっていき、その後編集するボディまで持っていく関数
     /// </summary>
     /// <param name="partsObj">選択したパーツオブジェクト</param>
     /// <param name="selectedBodyPos">選択された体の位置</param>
-    public void ArmToTarget(GameObject partsObj,GameObject selectedBody)
+    public void ArmToTarget(Vector3 partsObj, Vector3 selectedBody)
     {
-        if(canMove)
+        if (canMove)
         {
             canMove = false;
             StartCoroutine(Movement(partsObj, selectedBody));
@@ -86,16 +86,16 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
     /// <param name="partsObj">選択したパーツオブジェクト</param>
     /// <param name="selectedBodyPos">選択された体の位置</param>
     /// <returns></returns>
-    IEnumerator Movement(GameObject partsObj ,GameObject selectedBody)
+    IEnumerator Movement(Vector3 partsObj, Vector3 selectedBody)
     {
         selfTransform.rotation = Quaternion.identity;
 
         //パーツまで
-        while (selfTransform.position != partsObj.transform.position)
+        while (selfTransform.position != partsObj)
         {
 
-            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsObj.transform.position, speed);
-            var direction = Quaternion.LookRotation(originPos - partsObj.transform.position, Vector3.up);
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsObj, speed);
+            var direction = Quaternion.LookRotation(originPos - partsObj, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, 0.1f);
 
             yield return wfs;
@@ -108,31 +108,31 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
 
 
         //選択された体まで
-        while (selfTransform.position != selectedBody.transform.position)
+        while (selfTransform.position != selectedBody)
         {
-            selfTransform.position = Vector3.MoveTowards(selfTransform.position, selectedBody.transform.position, speed);
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, selectedBody, speed);
 
-            if(partsObj != null)
+            if (partsObj != null)
             {
-                partsObj.transform.position = Vector3.MoveTowards(selfTransform.position, selectedBody.transform.position, speed);
+                partsObj = Vector3.MoveTowards(selfTransform.position, selectedBody, speed);
             }
 
-            var direction = Quaternion.LookRotation(partsObj.transform.position - selectedBody.transform.position, Vector3.up);
+            var direction = Quaternion.LookRotation(partsObj - selectedBody, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, 0.1f);
             yield return wfs;
         }
 
         yield return wfs2;
         animator.SetTrigger("GrapTrigger");
-        partsObj.transform.parent = selectedBody.transform;
+        partsObj = selectedBody;
         yield return wfs2;
 
         //パーツまで戻る
-        while (selfTransform.position != partsObj.transform.position)
+        while (selfTransform.position != partsObj)
         {
 
-            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsObj.transform.position, speed);
-            var direction = Quaternion.LookRotation(partsObj.transform.position - selfTransform.position, Vector3.up);
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, partsObj, speed);
+            var direction = Quaternion.LookRotation(partsObj - selfTransform.position, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, 0.1f);
 
             yield return wfs;
@@ -145,30 +145,16 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
         {
 
             selfTransform.position = Vector3.MoveTowards(selfTransform.position, originPos, speed);
-            var direction = Quaternion.LookRotation(originPos - partsObj.transform.position, Vector3.up);
+            var direction = Quaternion.LookRotation(originPos - partsObj, Vector3.up);
             selfTransform.rotation = Quaternion.Lerp(selfTransform.rotation, direction, 0.1f);
 
             yield return wfs;
         }
 
-        selfTransform.position =  originPos;
+        selfTransform.position = originPos;
         selfTransform.rotation = originRot;
         canMove = true;
 
+
     }
-
-    //private void ArmLineAdjust()
-    //{
-    //    line.SetPosition(0, originLinePos[0]);
-
-    //    if(arrivePatrs)
-    //    {
-    //        //ポイントについたら
-    //        line.SetPosition(1, originLinePos[1]);
-    //    }
-
-    //    line.SetPosition(2, originLinePos[2]);
-
-    //}
-
 }
