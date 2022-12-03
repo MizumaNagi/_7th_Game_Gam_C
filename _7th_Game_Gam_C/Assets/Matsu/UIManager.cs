@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : SingletonMonoBehaviour<UIManager>
 {
     [Header("次のパーツが流れてくるまでの時間")]
     [SerializeField]
@@ -29,6 +29,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject resultObj;
+
+    public bool gameEnd = false;
 
     void Start()
     {
@@ -62,7 +64,12 @@ public class UIManager : MonoBehaviour
 
         if(Minute <= -1)
         {
+            //リザルト
             resultObj.SetActive(true);
+            gameEnd = true;
+
+            Score.Instance.Judge();
+
         }
     }
 

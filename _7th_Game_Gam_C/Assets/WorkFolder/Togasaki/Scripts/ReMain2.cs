@@ -8,8 +8,12 @@ public class ReMain2 : SingletonMonoBehaviour<ReMain2>
     private GameObject initObj;
 
     public bool canLoop = true;
-    private WaitForSeconds spawnWaitTime = new WaitForSeconds(12.1f);
+    private WaitForSeconds spawnWaitTime = new WaitForSeconds(12.5f);
 
+    public GameObject subjectObj;
+
+    [SerializeField]
+    private Transform oitokuPos;
 
     private void Start()
     {
@@ -19,6 +23,12 @@ public class ReMain2 : SingletonMonoBehaviour<ReMain2>
     public void Spawn()
     {
         Instantiate(initObj,Positions.Instance.leftPartsPos.position, Quaternion.identity);
+        if(subjectObj != null)
+        {
+            Destroy(subjectObj);
+        }
+        subjectObj = TestCharaFactory.Instance.RandomGenerateChatacter(false);
+        subjectObj.transform.position = oitokuPos.position;
     }
 
     private IEnumerator SpawnLoop()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharaJudge : MonoBehaviour
+public class CharaJudge : SingletonMonoBehaviour<CharaJudge>
 {
     /// <summary>
     /// 2キャラクターの全パーツの合致率を返す

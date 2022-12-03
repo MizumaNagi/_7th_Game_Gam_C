@@ -33,6 +33,11 @@ public class AutoMovement : MonoBehaviour
 
             if(lifeTime < 0)
             {
+                if (!UIManager.Instance.gameEnd)
+                {
+                    Score.Instance.scores.Add(CharaJudge.Instance.GetCharactersMatchRate(ReMain2.Instance.subjectObj.GetComponent<CharaDetail>(), Selection.Instance.ClickedGameObject.GetComponent<CharaDetail>()));
+                }
+
                 textRef.text = "";
                 deathFlag = true;
                 break;
@@ -70,7 +75,6 @@ public class AutoMovement : MonoBehaviour
                 //èIÇÌÇËÇ…
                 if(gameObject.transform.position == Positions.Instance.rightPartsPos.position)
                 {
-
                     Destroy(gameObject);
                 }
             }
