@@ -27,6 +27,9 @@ public class UIManager : MonoBehaviour
 
     private float M_Time, S_Time, OldSecond;
 
+    [SerializeField]
+    private GameObject resultObj;
+
     void Start()
     {
         //タイマーを初期化
@@ -56,6 +59,11 @@ public class UIManager : MonoBehaviour
 
         //タイマーを更新
         Timer.text = Minute.ToString("00") + ":" + ((int)Second).ToString("00");
+
+        if(Minute <= -1)
+        {
+            resultObj.SetActive(true);
+        }
     }
 
     //注文生成

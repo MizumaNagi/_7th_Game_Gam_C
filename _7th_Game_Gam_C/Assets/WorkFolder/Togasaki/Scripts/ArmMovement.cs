@@ -13,6 +13,8 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
     [SerializeField, Header("animator")]
     private Animator animator;
 
+    //public GameObject doron;
+
     //初期地点
     private Vector3 originPos;
     private Quaternion originRot;
@@ -20,7 +22,7 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
     private List<Vector3> originLinePos = new List<Vector3>();
 
     //動けるかどうか
-    private bool canMove = true;
+    public bool canMove = false;
 
     //中間地点用bool
     private bool arrivePatrs = false;
@@ -124,6 +126,7 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
 
         yield return wfs2;
         animator.SetTrigger("GrapTrigger");
+        //Instantiate(doron, selectedBody.transform.position, Quaternion.identity);
         partsObj.transform.parent = selectedBody.transform;
         yield return wfs2;
 
@@ -154,7 +157,6 @@ public class ArmMovement : SingletonMonoBehaviour<ArmMovement>
         selfTransform.position =  originPos;
         selfTransform.rotation = originRot;
         canMove = true;
-
     }
 
     //private void ArmLineAdjust()
